@@ -15,3 +15,9 @@
 - 대량의 데이터를 사용하기 위해서
     - 몬스터를 프리팹으로 하여 100마리 인스턴스화 했을때 Monster - HP, Attack, range... 가 반복된다.
     이 때 프로젝트에서 데이터를 저장하고 이 데이터를 참조해서 사용한다.
+
+# 24.04.10
+* NavMesh     : AI가 길을 찾기 위한 길을 구운것
+* Nav Mesh Agent : 실제로 길을 찾는 객체, 다른 객체, obstacle, link를 파악해서 길을 이동한다.
+* nav mesh Obstacle : agent가 이동하지 못하게 장애물을 설치한다.
+* nav mesh link : navmesh가 끊어진 길이 있을때 둘 사이를 연결시켜주는 컴포넌트
