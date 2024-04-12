@@ -85,6 +85,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 640284817102240317}
   m_SourcePrefab: {fileID: 100100000, guid: 9c00736b134f4e049a9742cac95ed9c5, type: 3}
+--- !u!95 &3585527617587217972 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 9c00736b134f4e049a9742cac95ed9c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 6965045483247188901}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7811957715444303604 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c00736b134f4e049a9742cac95ed9c5,
@@ -128,11 +134,22 @@ MonoBehaviour:
   HP: 0
   AttackPower: 0
   AttackRange: 0
-  rigidbody: {fileID: 0}
-  animator: {fileID: 0}
-  idleTime: 0
-  moveTime: 0
+  viewRange: 0
+  rigidbody: {fileID: 640284817102240317}
+  animator: {fileID: 3585527617587217972}
+  agent: {fileID: 0}
+  idleTime: 1
+  moveTime: 5
   chaseSpeed: 0
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 64
+  target: {fileID: 0}
+  wayPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  targetWayPoint: {fileID: 0}
   zombieData: {fileID: 11400000, guid: 26d01de94739c574393595d24e88a519, type: 2}
 --- !u!54 &640284817102240317
 Rigidbody:

@@ -9,4 +9,5 @@ public class ZombieData : ScriptableObject
     public int HP;
     public int attack;
     public float attackRange;
+    public float viewRange;
 }

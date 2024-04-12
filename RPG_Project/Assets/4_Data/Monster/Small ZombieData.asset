@@ -16,3 +16,4 @@ MonoBehaviour:
   HP: 10
   attack: 1
   attackRange: 1
+  viewRange: 6

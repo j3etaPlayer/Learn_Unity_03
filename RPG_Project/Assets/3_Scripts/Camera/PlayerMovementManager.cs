@@ -27,11 +27,11 @@ namespace CameraSetting
         Quaternion targetRotation;                           // 키보드 입력을 하지 않았을 때 카메라 방향으로 회전하기 위하여 회전 각도를 저장하는 변수
 
         [Header("점프 제어 변수")]
-        [SerializeField] private float gravityModifier = 3f; // 플레이어가 땅에 떨어지는 속도를 제어할 변수
-        [SerializeField] private Vector3 groundCheckPoint; // 땅을 판별하기 위한 체크 포인트
-        [SerializeField] private float groundCheckRadius;    // 땅 체크하는 구의 크기 반지름
-        [SerializeField] private LayerMask groundLayer;      // 체크할 레이어가 땅인지 판별하는 변수
-        private bool isGrounded;                             // true이면 점프가 가능, false이면 점프 제한
+        [SerializeField] private float gravityModifier = 3f;// 플레이어가 땅에 떨어지는 속도를 제어할 변수
+        [SerializeField] private Vector3 groundCheckPoint;  // 땅을 판별하기 위한 체크 포인트
+        [SerializeField] private float groundCheckRadius;   // 땅 체크하는 구의 크기 반지름
+        [SerializeField] private LayerMask groundLayer;     // 체크할 레이어가 땅인지 판별하는 변수
+        private bool isGrounded;                            // true이면 점프가 가능, false이면 점프 제한
 
         private float activeMoveSpeed;                  // 실제로 플레이어가 이동할 속력을 저장할 변수
         private Vector3 movement;                       // 플레이어가 움직이는 방향과 거리가 포함된 최종 Vector 값
@@ -112,9 +112,9 @@ namespace CameraSetting
 
             // 5. 점프를 하기 위한 계산식 - 
 
-            float yValue = movement.y;                               // 떨어지고 있는 y의 크기를 저장
-            movement = moveDirection * activeMoveSpeed;               // 좌표에 이동할 x,0,z 백터 값을 저장  -> y떨어지고 있는 값이 0으로 초기화
-            movement.y = yValue;                                      // 중력에 힘이 계속 받도록 잃어버린 변수를 다시 불러온다.
+            float yValue = movement.y;                              // 떨어지고 있는 y의 크기를 저장
+            movement = moveDirection * activeMoveSpeed;             // 좌표에 이동할 x,0,z 백터 값을 저장  -> y떨어지고 있는 값이 0으로 초기화
+            movement.y = yValue;                                    // 중력에 힘이 계속 받도록 잃어버린 변수를 다시 불러온다.
 
             // 다중 점프 되는 문제점이 발생 -> 현재 상태가 공중인 상태인지 아닌지 판단할 필요가 있다. 
 
@@ -129,7 +129,6 @@ namespace CameraSetting
             // 점프키를 입력하여 점프 구현
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
-
                 playerAnimator.CrossFade("Jump", 0.2f);               // 두 번째 매개변수 : 현재 State에서 실행하고 싶은 애니메이션을 자동으로 Blend해주는 시간
                 movement.y = jumpForce;
             }

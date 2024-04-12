@@ -5,11 +5,12 @@ using UnityEngine;
 public class Enemy_Zombie : Enemy
 {
     #region State
-    public ZombieIdleState idelState {  get; private set; }
+    public ZombieIdleState idleState {  get; private set; }
     public ZombieMoveState moveState { get; private set; }
+    public ZombieAttackState attackState { get; private set; }
+    public ZombiePatrolState patrolState { get; private set; }
+
     #endregion
-
-
 
     public ZombieData zombieData;
 
@@ -18,16 +19,17 @@ public class Enemy_Zombie : Enemy
         base.Awake();
         OnLoadComponents();
 
-        idelState = new ZombieIdleState(this, stateMachine, "Idle", this);
-        moveState = new ZombieMoveState(this, stateMachine, "Move", this);
-        // attackStat...
+        idleState = new ZombieIdleState(this, stateMachine, "Idle", this);
+        moveState = new ZombieMoveState(this, stateMachine, "Walk", this);
+        attackState = new ZombieAttackState(this, stateMachine, "Attack", this);
+        patrolState = new ZombiePatrolState(this, stateMachine, "Walk", this);
     }
 
     protected override void Start()
     {
         base.Start();
 
-        stateMachine.Initilize(idelState);
+        stateMachine.Initilize(patrolState);
     }
     protected override void Update()
     {
@@ -40,5 +42,6 @@ public class Enemy_Zombie : Enemy
         HP = zombieData.HP;
         AttackPower = zombieData.attack;
         AttackRange = zombieData.attackRange;
+        viewRange = zombieData.viewRange;
     }
 }

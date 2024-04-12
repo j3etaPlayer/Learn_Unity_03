@@ -5,6 +5,7 @@ using UnityEngine;
 public class ZombieMoveState : EnemyState
 {
     public Enemy_Zombie enemy;
+
     public ZombieMoveState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animName, Enemy_Zombie _enemy) : base(_enemyBase, _stateMachine, _animName)
     {
         this.enemy = _enemy;
@@ -22,6 +23,7 @@ public class ZombieMoveState : EnemyState
     {
         base.Exit();
         Debug.Log("Move 상태 퇴장");
+        enemy.agent.ResetPath();
     }
 
     public override void Update()
@@ -29,10 +31,21 @@ public class ZombieMoveState : EnemyState
         base.Update();
 
         // enemy.NavMeshAgent 플레이어 쫒는 기능
+        Transform target = enemy.SearchTarget();
 
-        if (stateTimer <= 0)
+        if (target)
         {
-            stateMachine.ChangeStat(enemy.idelState);
+            enemy.agent.SetDestination(target.position);
         }
+        else
+        {
+            stateMachine.ChangeState(enemy.idleState);
+        }
+
+        if (enemy.IsAvailableAttack)
+        {
+            stateMachine.ChangeState(enemy.attackState);
+        }
+
     }
 }
