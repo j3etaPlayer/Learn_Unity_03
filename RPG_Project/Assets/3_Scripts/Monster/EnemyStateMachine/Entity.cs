@@ -7,10 +7,7 @@ public class Entity : MonoBehaviour
     [Header("Status")]
     public int HP;
     public int AttackPower;
-    public float AttackRange;
-    public float viewRange;
-
-    public Rigidbody rigidbody;
+    
     public Animator animator;
 
     protected virtual void Awake()
@@ -28,7 +25,6 @@ public class Entity : MonoBehaviour
 
     public virtual void OnLoadComponents()
     {
-        rigidbody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
     }
 }

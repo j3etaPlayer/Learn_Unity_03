@@ -4,18 +4,24 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(FieldOfView))]
 public class Enemy : Entity
 {
-
+    #region Compoment
     public EnemyStateMachine stateMachine {  get; private set; }
     public NavMeshAgent agent;
+    public Rigidbody rigidbody;
+    #endregion
 
     [Header("Enemy Stat")]
     public float idleTime;          // idle 상태 시간
     public float moveTime;          // 추적 시간
     public float chaseSpeed;        // 추적 속도
+    public float AttackRange;
+    public float viewRange;
 
     [Header("Search Target")]
+    private FieldOfView fov;
     public LayerMask targetMask;    // 타겟 지정 레이어 마스크
     public Transform target;
 
@@ -38,6 +44,8 @@ public class Enemy : Entity
     {
         base.OnLoadComponents();
         agent = GetComponent<NavMeshAgent>();
+        rigidbody = GetComponent<Rigidbody>();
+        fov = GetComponent<FieldOfView>();
     }
     public bool IsAvailableAttack
     {
@@ -53,12 +61,7 @@ public class Enemy : Entity
     }
     public Transform SearchTarget()
     {
-        target = null;
-        Collider[] targetInViewRadius = Physics.OverlapSphere(transform.position, viewRange, targetMask);
-        if(targetInViewRadius.Length > 0)
-        {
-            target = targetInViewRadius[0].transform;
-        }
+        this.target = fov.NearestTarget;
 
         return target;
     }
