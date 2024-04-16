@@ -102,4 +102,9 @@ public class Enemy : Entity
         Gizmos.DrawWireSphere(transform.position, AttackRange);
     }
 
+    public override void TakeDamage(int damage, Vector3 contactPos, GameObject hitEffectPrefabs = null)
+    {
+        base.TakeDamage(damage, contactPos, hitEffectPrefabs);
+    }
+
 }
