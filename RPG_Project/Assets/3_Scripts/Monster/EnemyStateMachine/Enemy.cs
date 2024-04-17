@@ -11,6 +11,7 @@ public class Enemy : Entity
     public EnemyStateMachine stateMachine {  get; private set; }
     public NavMeshAgent agent;
     public Rigidbody rigidbody;
+    public EnemyAttackManager attackManager;
     #endregion
 
     [Header("Enemy Stat")]
@@ -30,10 +31,16 @@ public class Enemy : Entity
     [HideInInspector] public Transform targetWayPoint = null;
     private int wayPointIndex = 0;
 
+    public NPCBattleUI battleUI;
+
     protected override void Awake()
     {
         base.Awake();
         stateMachine = new EnemyStateMachine();
+
+        battleUI.MinValue = 0;
+        battleUI.maxValue = HP;
+        battleUI.value = HP;
     }
     protected override void Update()
     {
@@ -46,6 +53,7 @@ public class Enemy : Entity
         agent = GetComponent<NavMeshAgent>();
         rigidbody = GetComponent<Rigidbody>();
         fov = GetComponent<FieldOfView>();
+        attackManager = GetComponent<EnemyAttackManager>();
     }
     public bool IsAvailableAttack
     {

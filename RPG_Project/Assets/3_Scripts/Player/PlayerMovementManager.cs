@@ -147,8 +147,11 @@ namespace CameraSetting
             }
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, smoothRotation);
+            if (player.canMove)
+            {
             cCon.Move(movement * Time.deltaTime);
             playerAnimator.SetFloat("moveAmount", moveAmount, 0.2f, Time.deltaTime);           // dampTime : 1번째 변수(이전 값), 2번째 변수(변화 시키고 싶은 값)  
+            }
         }
 
         private void HandleActionInput()

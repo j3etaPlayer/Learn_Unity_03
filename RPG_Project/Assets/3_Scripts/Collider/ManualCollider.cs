@@ -7,19 +7,23 @@ using UnityEngine;
 /// </summary>
 public class ManualCollider : MonoBehaviour
 {
-    public Vector3 collider = new Vector3(2, 2, 2);
+    public Vector3 boxSize = new Vector3(2, 2, 2);
     public LayerMask layerMask;
 
+    /// <summary>
+    /// 객체의 회전 방향으로 충돌을 검사하는 LayerBox를 생성하고, 충돌한 객체를 반환한다.
+    /// </summary>
     public Collider[] GetColliderObject()
     {
-        Collider[] colliders = Physics.OverlapBox(transform.position, collider, Quaternion.identity, layerMask);
+        Collider[] colliders = Physics.OverlapBox(transform.position, boxSize / 2, transform.rotation, layerMask);
         return colliders;
     }
 
     private void OnDrawGizmos()
     {
+        Gizmos.matrix = transform.localToWorldMatrix;
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, collider);
+        Gizmos.DrawWireCube(transform.position, boxSize);
     }
 
 
