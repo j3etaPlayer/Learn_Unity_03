@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Net.Sockets;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,13 +16,12 @@ public class FieldOfViewEditor : Editor
         Vector3 viewAngleLeft = DirectionFromAngle(fov.viewAngle / 2 * -1);
         Vector3 viewAngleRight = DirectionFromAngle(fov.viewAngle / 2);
 
-
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngleLeft * fov.viewRange);
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngleRight * fov.viewRange);
 
         Handles.color = Color.red;
 
-        foreach (Transform visibleTarget in fov.VisibleTargets)
+        foreach(Transform visibleTarget in fov.VisibleTargets)
         {
             Handles.DrawLine(fov.transform.position, visibleTarget.position);
         }
@@ -34,5 +32,4 @@ public class FieldOfViewEditor : Editor
     {
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
-
 }

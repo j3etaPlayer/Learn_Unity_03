@@ -6,10 +6,9 @@ using UnityEngine;
 public class Player : Entity
 {
     public ManualCollider manualCollider;
-    
+
     public PlayerData playerData;
     public Action OnChangedStats;
-
 
     protected override void Awake()
     {
@@ -21,19 +20,18 @@ public class Player : Entity
     {
         InitPlayerData();
         base.Start();
-
     }
 
     protected override void Update()
     {
         base.Update();
     }
+
     private void InitPlayerData()
     {
-        maxHP = playerData.maxHP;
-        maxMP = playerData.maxMP;
-        AttackPower = playerData.attackPower;
-
+        MAXHP = playerData.MaxHp;
+        MAXMP = playerData.MaxMp;
+        AttackPower = playerData.AttackPower;
     }
 
     public override void TakeDamage(int damage, Vector3 contactPos, GameObject hitEffectPrefabs = null)

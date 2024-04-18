@@ -6,14 +6,15 @@ public class ZombieIdleState : EnemyState
 {
     Enemy_Zombie enemy;
 
-    public ZombieIdleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animName, Enemy_Zombie _enemy) : base(_enemyBase, _stateMachine, _animName)
+    public ZombieIdleState(Enemy _enemybase, EnemyStateMachine _stateMachine, string _animName, Enemy_Zombie _enemy) : base(_enemybase, _stateMachine, _animName)
     {
         enemy = _enemy;
     }
+
     public override void Enter()
     {
         base.Enter();
-        stateTimer = enemy.idleTime;    // Idle 상태를 지속하는 시간을 초기화
+        stateTimer = enemy.idleTime;   // Idle 상태를 지속하는 시간을 초기화
     }
 
     public override void Exit()
@@ -38,12 +39,11 @@ public class ZombieIdleState : EnemyState
             }
         }
         else
-        { 
-            if (stateTimer <= 0 )
+        {
+            if (stateTimer <= 0)
             {
                 stateMachine.ChangeState(enemy.patrolState);
             }
         }
-
     }
 }

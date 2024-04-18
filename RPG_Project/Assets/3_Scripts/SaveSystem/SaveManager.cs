@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class SaveManager : SingletonMonoBehaviour<SaveManager>
 {
+    // Singleton Pattern : 인스턴스가 없을 경우 인스턴스를 생성하고, 이미 존재할 경우 인스턴스를 반환
+
     DataHandler dataHandler;
     GameData gameData;                   // 플레이어의 정보를 저장할 클래스
     List<ISaveManager> saveManagers;     // 하이어라키창에 있는 ISaveManager를 상속하는 클래스를 저장할 리스트
@@ -18,7 +20,7 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
     protected override void Awake()         // ctrl + M + M 
     {
         base.Awake();
-        originName = fileName;           // 시작할 때 저장데이터 이름의 원본을 기억해둔다.
+        originName = fileName;           // 시작할 때 저장데이터 이름의 원본을 기억해둔다.    
     }
 
     public void NewGame()

@@ -4,35 +4,43 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// player의 hp, mp, stamina 등의 값이 변경됬을 때 정용되는 코드
+/// player의 HP, Mp, Stamina 등의 UI변경 됬을 때 적용시켜주는 클래스
 /// </summary>
-public class PlayerIngameUI : MonoBehaviour
+public class PlayerInGameUI : MonoBehaviour
 {
-    public PlayerManager playerManager;
+    public PlayerManager player;
+
     public Image hpSlider;
     public Image mpSlider;
 
     public GameObject gameOverUI;
-public void InitializeSlider()
+
+
+    public void InitializeSlider()
     {
-        hpSlider.fillAmount = (float)playerManager.HP / (float)playerManager.maxHP;
-        mpSlider.fillAmount = (float)playerManager.MP / (float)playerManager.maxMP;
+        hpSlider.fillAmount = (float)player.HP / (float)player.MAXHP;
+        mpSlider.fillAmount = (float)player.MP / (float)player.MAXMP;
     }
+
 
     private void OnEnable()
     {
-        playerManager.OnChangedStats += OnChangedValue;
+        player.OnChangedStats += OnChangedValue;
     }
 
     private void OnDisable()
     {
-        playerManager.OnChangedStats -= OnChangedValue;
+        player.OnChangedStats -= OnChangedValue;
     }
 
     private void OnChangedValue()
     {
-        hpSlider.fillAmount = (float)playerManager.HP / (float)playerManager.maxHP;
-        mpSlider.fillAmount = (float)playerManager.MP / (float)playerManager.maxMP;
+        hpSlider.fillAmount = (float)player.HP / (float)player.MAXHP;
+        mpSlider.fillAmount = (float)player.MP / (float)player.MAXMP;
     }
-    
+
+    public void GameOver()
+    {
+        gameOverUI.SetActive(true);
+    }
 }

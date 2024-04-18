@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamagable
+public interface IDamagable 
 {
-    bool isAlive {  get; }
+    bool IsAlive { get; }
     void TakeDamage(int damage, Vector3 contactPos, GameObject hitEffectPrefabs = null);
 }

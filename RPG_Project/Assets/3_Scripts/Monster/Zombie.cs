@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Scriptable 오브젝트의 데이터를 저장하기 위한 클래스
+/// Scriptable 오브젝트의 데이터를 받아와서 저장하기 위한 클래스
 /// </summary>
 public class Zombie : MonoBehaviour
 {
     public ZombieData zombieData;
 
-    [Header("좀비의 능력치")]
     public string ZombieName;
     public int HP;
     public int Attack;
@@ -19,7 +18,7 @@ public class Zombie : MonoBehaviour
     {
         ZombieName = zombieData.zombieName;
         HP = zombieData.HP;
-        Attack = zombieData.attack;
+        Attack = zombieData.Attack;
         AttackRange = zombieData.attackRange;
     }
 }

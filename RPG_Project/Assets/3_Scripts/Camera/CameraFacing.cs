@@ -13,9 +13,7 @@ public class CameraFacing : MonoBehaviour
     private void Awake()
     {
         if (!refCamera)
-        {
             refCamera = Camera.main;
-        }
     }
 
     public Vector3 GetAxis(Axis axis)

@@ -30,10 +30,11 @@ public class PlayerAnimationManager : MonoBehaviour
         Collider[] colliders = player.manualCollider.GetColliderObject();
         foreach(var hit in colliders)
         {
-            if (hit.GetComponentInParent<Enemy>() != null)
+            if(hit.GetComponentInParent<Enemy>() != null)
             {
-                Enemy enemy = hit.GetComponentInParent<Enemy>();
-                (enemy as Enemy_Zombie).TakeDamage(player.AttackPower, player.transform.position);
+                // TakeDamage
+                Enemy_Zombie enemy = hit.GetComponentInParent<Enemy_Zombie>();
+                enemy.TakeDamage(player.AttackPower, player.transform.position);
 
             }
         }

@@ -20,7 +20,7 @@ public class PlayerManager : Player, ISaveManager
     [HideInInspector] public PlayerAnimationManager playerAnimationManager;
     [HideInInspector] public PlayerMovementManager playerMovementManager;
     [HideInInspector] public PlayerAudioManager playerAudioManager;
-    public PlayerIngameUI playerIngameUI;
+    public PlayerInGameUI playerInGameUI;
     protected override void Awake()
     {
         base.Awake();
@@ -28,14 +28,14 @@ public class PlayerManager : Player, ISaveManager
         playerMovementManager = GetComponent<PlayerMovementManager>();
         playerAudioManager = GetComponent<PlayerAudioManager>();
         characterController = GetComponent<CharacterController>();
-        playerIngameUI = GetComponent<PlayerIngameUI>();
     }
 
     protected override void Start()
     {
         base.Start();
-        playerIngameUI.InitializeSlider();
+        playerInGameUI.InitializeSlider();
     }
+
     public void SaveData(ref GameData gameData)   // GameData 클래스에 플레이어의 현재 좌표를 저장
     {
         gameData.x = transform.position.x;
@@ -55,19 +55,22 @@ public class PlayerManager : Player, ISaveManager
         base.TakeDamage(damage, contactPos, hitEffectPrefabs);
         OnChangedStats?.Invoke();
 
-        if (hitEffectPrefabs)   // 피격 위치에 피격 이펙트 생성
+        if (hitEffectPrefabs) // 피격 위치에 피격 이팩트 생성
         {
-            Instantiate(hitEffectPrefabs, Vector3.zero, Quaternion.identity);   // 오브젝트 풀링 교체
+            Instantiate(hitEffectPrefabs, Vector3.zero, Quaternion.identity); // 오브젝트 풀링 교체
         }
 
-        if (isAlive)
+        if (IsAlive)
         {
+            // Hit
             playerAnimationManager.PlayerTargetActionAnimation("Hit", false);
-            // vfs -HitEffect manager로 색 변경
+            // VFX - Hit Effect manager로 색 변경
         }
         else
         {
+            // Dead
             isDead = true;
+            playerInGameUI.GameOver();
             animator.CrossFade("Dead", 0.2f);
         }
     }

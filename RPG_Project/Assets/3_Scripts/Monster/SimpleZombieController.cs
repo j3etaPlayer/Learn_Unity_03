@@ -8,7 +8,7 @@ public class SimpleZombieController : MonoBehaviour
     public Animator anim;
     public NavMeshAgent agent;
 
-    [Header("좀비가 도착할 대상")]
+    [Header("좀비가 쫓아갈 대상")]
     public Transform target;
 
     private void Awake()
@@ -17,17 +17,17 @@ public class SimpleZombieController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
         TraceTarget(target.position);
     }
 
     /// <summary>
-    /// target의 위치를 통해 Nav Mesh Agent를 이용하여 추적하는 함수
+    /// 타겟의 위치를 통해 navMeshAgent를 타겟을 추적하는 함수
     /// </summary>
     private void TraceTarget(Vector3 des)
     {
         agent.SetDestination(des);
     }
-    
 }
