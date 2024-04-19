@@ -11,7 +11,7 @@ public class PlayerStatUI : MonoBehaviour
     public TextMeshProUGUI[] statText;
     private void Awake()
     {
-        playerData = Instantiate(playerData) as PlayerData;
+        //playerData = Instantiate(playerData) as PlayerData;
     }
     //public bool Test = false;
     //public void onchangedtest()

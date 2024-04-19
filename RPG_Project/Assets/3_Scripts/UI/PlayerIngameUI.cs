@@ -22,6 +22,15 @@ public class PlayerInGameUI : MonoBehaviour
         mpSlider.fillAmount = (float)player.MP / (float)player.MAXMP;
     }
 
+    // ui scripts components
+    public PlayerStatUI playerStatUI;
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            playerStatUI.gameObject.SetActive(!playerStatUI.gameObject.activeSelf);
+        }
+    }
 
     private void OnEnable()
     {
