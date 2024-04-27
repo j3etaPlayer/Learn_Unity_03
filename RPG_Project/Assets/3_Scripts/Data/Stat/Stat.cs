@@ -74,7 +74,7 @@ public class Modifier
     /// <summary>
     /// 아이템 장착 및 버프 획득시 Stat을 갱신시킨다.
     /// </summary>
-    public void AddModifier(IModifier modifier)
+    private void AddModifier(IModifier modifier)
     {
         modifiers.Add(modifier);
         UpdateModifiedValue();
