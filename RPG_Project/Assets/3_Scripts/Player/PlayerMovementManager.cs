@@ -76,6 +76,7 @@ namespace CameraSetting
         
         private void HandleMovement()
         {
+
             // 1. Input 클래스를 이용하여 키보드 입력을 제어
 
             float horizontal = Input.GetAxis("Horizontal");

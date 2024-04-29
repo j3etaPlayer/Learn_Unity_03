@@ -18,14 +18,14 @@ MonoBehaviour:
       modifiedValue: 10
   - type: 1
     value:
-      modifiedValue: 10
+      modifiedValue: 100
   - type: 2
     value:
       modifiedValue: 5
   - type: 3
     value:
-      modifiedValue: 5
+      modifiedValue: 3
   MaxHp: 10
-  MaxMp: 10
+  MaxMp: 100
   AttackPower: 5
-  DefensePower: 5
+  DefensePower: 3
