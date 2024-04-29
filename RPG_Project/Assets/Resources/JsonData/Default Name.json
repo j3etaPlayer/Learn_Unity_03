@@ -1,0 +1,38 @@
+[
+	{
+		"indexNumber":"0",
+		"speakerIndex":"0",
+		"name":"???",
+		"dialogue":"첫번째 대사"
+	},
+	{
+		"indexNumber":"0",
+		"speakerIndex":"0",
+		"name":"???",
+		"dialogue":"두번째 대사"
+	},
+	{
+		"indexNumber":"0",
+		"speakerIndex":"1",
+		"name":"검사",
+		"dialogue":"세번째 대사"
+	},
+	{
+		"indexNumber":"1",
+		"speakerIndex":"0",
+		"name":"???",
+		"dialogue":"네번째 대사"
+	},
+	{
+		"indexNumber":"1",
+		"speakerIndex":"1",
+		"name":"검사",
+		"dialogue":"다섯번째 대사"
+	},
+	{
+		"indexNumber":"1",
+		"speakerIndex":"0",
+		"name":"???",
+		"dialogue":"여섯번째 대사"
+	}
+]

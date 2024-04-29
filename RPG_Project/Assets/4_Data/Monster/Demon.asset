@@ -16,3 +16,4 @@ MonoBehaviour:
   HP: 500
   Attack: 100
   attackRange: 10
+  viewRange: 0

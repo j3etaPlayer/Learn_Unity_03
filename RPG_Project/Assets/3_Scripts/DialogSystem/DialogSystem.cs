@@ -36,6 +36,8 @@ public class DialogueSystem : MonoBehaviour
     public float textSpeed = 0.1f;
     public bool isTypeing = false;
 
+    public int indexNumber = 0;
+
     public void Setup()
     {
         for (int i = 0; i < speakers.Length; i++)
@@ -44,6 +46,7 @@ public class DialogueSystem : MonoBehaviour
             SetActiveObjects(speakers[i], false);      // bool값이 true이면 해당 UI 출력 
             speakers[i].portraitImage.gameObject.SetActive(false);
         }
+        dialogs = WorldDialogue.Instance.dialogueDatabase[indexNumber].ToArray();
     }
 
     public bool UpdateDialog()
@@ -75,7 +78,6 @@ public class DialogueSystem : MonoBehaviour
             if (dialogs.Length > currentDialogIndex + 1)
             {
                 SetNextDialog();
-
             }
             // 대사가 없을 경우 모든 오브젝트를 비활성화 하고 true를 반환
             else
@@ -101,7 +103,7 @@ public class DialogueSystem : MonoBehaviour
 
         currentDialogIndex++;  // 다음 dialogueData 검색
 
-        currentSpeakerIndex = dialogs[currentSpeakerIndex].speakerIndex;
+        currentSpeakerIndex = dialogs[currentDialogIndex].speakerIndex;
 
         SetActiveObjects(speakers[currentSpeakerIndex], true); // 현재 대사의 UI 활성화
 
