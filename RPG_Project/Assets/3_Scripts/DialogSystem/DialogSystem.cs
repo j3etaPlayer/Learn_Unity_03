@@ -46,6 +46,10 @@ public class DialogueSystem : MonoBehaviour
             SetActiveObjects(speakers[i], false);      // bool값이 true이면 해당 UI 출력 
             speakers[i].portraitImage.gameObject.SetActive(false);
         }
+        isFirst = true;
+        currentDialogIndex = -1;
+        currentSpeakerIndex = 0;
+
         dialogs = WorldDialogue.Instance.dialogueDatabase[indexNumber].ToArray();
     }
 
@@ -61,7 +65,7 @@ public class DialogueSystem : MonoBehaviour
             isFirst = false;
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             if(isTypeing) // 타이핑이 진행 중인 상태
             {
@@ -73,10 +77,8 @@ public class DialogueSystem : MonoBehaviour
                 speakers[currentSpeakerIndex].dialogue.text = dialogs[currentDialogIndex].dialogue; // 대사 UI에 대사 출력
                 speakers[currentSpeakerIndex].arrow.SetActive(true);   // 현재 대사가 끝났음을 알린다.
             }
-
-            // 대사가 남아 있을 경우에는 다음 대사를 진행
-            if (dialogs.Length > currentDialogIndex + 1)
-            {
+            else if (dialogs.Length > currentDialogIndex + 1)
+            { 
                 SetNextDialog();
             }
             // 대사가 없을 경우 모든 오브젝트를 비활성화 하고 true를 반환

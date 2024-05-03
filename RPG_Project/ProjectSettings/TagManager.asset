@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Item
   - DestroyZone
+  - Quest
   layers:
   - Default
   - TransparentFX
