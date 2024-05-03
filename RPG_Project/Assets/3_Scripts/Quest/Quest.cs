@@ -9,7 +9,7 @@ public enum QuestStatus
 }
 public enum QuestType
 {
-    KillEnemy, BringItem,
+    KillEnemy, BringItem, Ending,
 }
 [System.Serializable]
 public class QuestReward
@@ -41,6 +41,11 @@ public class Quest
     public QuestType type;
     public QuestReward reward;
 
+    [Header("ด๋ป็")]
+    public int startIndexNumber;
+    public int completeIndexNumber;
+    public int endIndexNumber;
+
     [Header("UI")]
     public string title;
     public string description;
@@ -49,7 +54,7 @@ public class Quest
     public Quest() { }
 
     public Quest(int id, int targetId, int count, int targetCount, QuestStatus status, QuestType type, 
-                QuestReward reward, string title, string description)
+                QuestReward reward, string title, string description, int startIndexNumber, int completeIndexNumber, int endIndexNumber)
     {
         this.id = id;
         this.targetId = targetId;
@@ -60,5 +65,9 @@ public class Quest
         this.reward = reward;
         this.title = title;
         this.description = description;
+        this.startIndexNumber = startIndexNumber;
+        this.completeIndexNumber = completeIndexNumber;
+        this.endIndexNumber = endIndexNumber;
+
     }
 }

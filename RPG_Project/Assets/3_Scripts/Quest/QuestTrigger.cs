@@ -21,7 +21,7 @@ public class QuestTrigger : MonoBehaviour, IInteractable
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            QuestManager.Instance.ProcessQuest(QuestType.KillEnemy, questId);
+            QuestManager.Instance.ProcessQuest(myQuest.type, questId);
         }
     }
 
@@ -29,23 +29,28 @@ public class QuestTrigger : MonoBehaviour, IInteractable
     {
         if (nowSpeaking) return;
 
+        if (QuestManager.Instance.questDatabase[myQuest.id].type == QuestType.Ending && myQuest.status == QuestStatus.Rewarded)
+        {
+            Ending.Instance.PlayEndingScene();
+        }
+
         if (QuestManager.Instance.questDatabase[myQuest.id].status == QuestStatus.None)
         {
             QuestManager.Instance.LoadQuestUI(myQuest, false);
 
-            inGameDialogueSystem.indexNumber = 8;
+            inGameDialogueSystem.indexNumber = myQuest.startIndexNumber;
             inGameDialogueSystem.Setup();
             StartCoroutine(InGameDialogue(inGameDialogueSystem, QuestStatus.Accepted));
         }
         else if (QuestManager.Instance.questDatabase[myQuest.id].status == QuestStatus.Completed)
         {
-            inGameDialogueSystem.indexNumber = 9;
+            inGameDialogueSystem.indexNumber = myQuest.completeIndexNumber;
             inGameDialogueSystem.Setup();
             StartCoroutine(InGameDialogue(inGameDialogueSystem, QuestStatus.Rewarded));
         }
         else if (QuestManager.Instance.questDatabase[myQuest.id].status == QuestStatus.Rewarded)
         {
-            inGameDialogueSystem.indexNumber = 10;
+            inGameDialogueSystem.indexNumber = myQuest.endIndexNumber;
             inGameDialogueSystem.Setup();
             StartCoroutine(InGameDialogue(inGameDialogueSystem, QuestStatus.Rewarded));
         }
@@ -54,7 +59,6 @@ public class QuestTrigger : MonoBehaviour, IInteractable
     {
         nowSpeaking = true;
         yield return new WaitUntil(() => text.UpdateDialog() == true);
-
         if (text.UpdateDialog())
         {
             QuestManager.Instance.questDatabase[myQuest.id].status = status;
